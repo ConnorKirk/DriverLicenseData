@@ -1,0 +1,16 @@
+---
+title: "README"
+author: "Connor Kirkpatrick"
+date: "6 July 2017"
+output: html_document
+---
+
+# Read Me
+
+Analysis of the GB Driving License Data. This data set is provided as a snapshot of the current DVLA database at a set point of time. These snapshots are provided quarterly.
+
+# Data
+
+Data taken from [GB Driving License Data](https://data.gov.uk/dataset/driving-licence-data)
+
+

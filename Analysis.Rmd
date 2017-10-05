@@ -1,0 +1,57 @@
+---
+title: "How many licensed drivers are there in the UK?"
+output: html_notebook
+---
+
+The DVLA provides an aggregated snapshot of their Driver License database every quarter. It summarises the number of provisional and full licenses issued across gender and age.
+
+
+# Libraries
+
+```{r}
+
+library(readxl)
+library(tidyverse)
+library(ggthemes)
+```
+
+
+
+# Read the Data
+```{r}
+
+june2017 <- readxl::read_excel("Raw_Data/Driving-Licence-data-june2017.xlsx", 
+                               sheet = 1, 
+                               skip = 20) %>% 
+  filter(Age != "Total")
+
+names(june2017)[2:7] <- c("Provisional Licences - Male",	
+                          "Provisional Licences - Female",	
+                          "Provisional - Total",	
+                          "Full Licences - Male",	
+                          "Full Licences - Female",	
+                          "Full - Total")
+
+june2017$Age <- as.integer(june2017$Age)
+
+```
+
+
+```{r}
+tidy_data <- june2017 %>%
+  gather(key = key, value = value, -Age) %>%
+  extract(col = key, c("LicenseType", "Gender"), "(Provisional|Full) .+ (Male|Female|Total)") %>%
+  filter(Gender != "Total", Age != "Total")
+
+
+tidy_data %>%
+  group_by(LicenseType) %>%
+  summarise(Total = sum(value))
+
+tidy_data %>%
+ggplot(aes(Age, value, col = Gender)) + geom_point() + facet_wrap(~LicenseType) +  ylab("Count") +
+   scale_x_continuous(breaks = extended_range_breaks()(tidy_data$Age)) +
+  scale_y_continuous(breaks = extended_range_breaks()(tidy_data$value)) 
+  
+
+```

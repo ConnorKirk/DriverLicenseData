@@ -5,11 +5,14 @@ date: "6 July 2017"
 output: html_document
 ---
 
-# Read Me
+# What is this?
 
-Analysis of the GB Driving License Data. This data set is provided as a snapshot of the current DVLA database at a set point of time. These snapshots are provided quarterly.
+ This is an analysis of the GB Driving License Data. This data set is provided as a snapshot of the current DVLA database at a set point of time. These snapshots are provided quarterly. 
+ 
+## Analysis
+[See the notebook here](http://htmlpreview.github.io/?https://github.com/ConnorKirk/DriverLicenseData/blob/master/Analysis.nb.html)
 
-# Data
+## Data
 
 Data taken from [GB Driving License Data](https://data.gov.uk/dataset/driving-licence-data)
 
